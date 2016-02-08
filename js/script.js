@@ -4,8 +4,10 @@ jQuery(document).ready(function($) {
 
 	$('a').each(function(){
 		var href = $(this).attr('href');
-		href += (href.match(/\?/) ? '&' : '?') + querystring;
-		$(this).attr('href', href);
+		if (href) {
+			href += (href.match(/\?/) ? '&' : '?') + querystring;
+			$(this).attr('href', href);		
+		}
 	});
 
 });
