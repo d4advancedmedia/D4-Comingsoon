@@ -17,6 +17,13 @@ include ('lib/session_support.php');
 
 
 function d4comingsoon() {
+	if ( ! is_user_logged_in() && ! is_admin() && ! in_array($GLOBALS['pagenow'], array('wp-login.php', 'wp-register.php')) ) {			
+		// Over reaction to not being logged in.
+			 wp_redirect(site_url('wp-admin'));
+			exit;
+	}
+
+/*
 	$password = 'D4321!';
 
 	if ( isset($_POST['passphrase']) ) {	
@@ -35,7 +42,7 @@ function d4comingsoon() {
 			exit;
 		}
 	}
-
+ //*/
 }
 add_action( 'init', 'd4comingsoon' );
 
